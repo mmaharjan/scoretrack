@@ -28,10 +28,10 @@ public class Team {
     //private byte[] teamFlag;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "group_team", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "fk_game_group", nullable = false)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Group group;
+    private GameGroup gameGroup;
 
     public Long getId() {
         return id;
@@ -55,5 +55,13 @@ public class Team {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public GameGroup getGameGroup() {
+        return gameGroup;
+    }
+
+    public void setGameGroup(GameGroup gameGroup) {
+        this.gameGroup = gameGroup;
     }
 }

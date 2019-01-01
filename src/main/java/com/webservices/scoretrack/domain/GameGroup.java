@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "group")
-public class Group {
+@Table(name = "game_group")
+public class GameGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,9 +16,9 @@ public class Group {
     @Column(unique = true)
     private String name;
 
-    protected Group() {}
+    protected GameGroup() {}
 
-    public Group(String name) {
+    public GameGroup(String name) {
         this.name = name;
     }
 
