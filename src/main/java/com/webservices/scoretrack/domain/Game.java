@@ -18,15 +18,18 @@ public class Game {
 
     @NotNull
     @Column
+    @Size(max = 35)
     private String team1Code;
 
     @NotNull
     @Column
+    @Size(max = 35)
     private String team2Code;
 
     @NotNull
     @Column
     private Date gameDatetime;
+    // add group as well so that we can find out easily which group this game belongs to
 
     public Long getId() {
         return id;
@@ -64,7 +67,7 @@ public class Game {
         return gameDatetime;
     }
 
-    public void getGameDate(Date gameDate) {
+    public void setGameDateTime(Date gameDate) {
         this.gameDatetime = gameDate;
     }
 }
