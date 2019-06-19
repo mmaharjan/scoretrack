@@ -48,7 +48,8 @@ public class ScoretrackResourceServerConfig extends ResourceServerConfigurerAdap
 
         http
                 .authorizeRequests()
-                .antMatchers(("/api/games/talk")).permitAll()
+                .antMatchers("/api/games/talk").permitAll()
+                .antMatchers("/api/games/**").authenticated()
                 .antMatchers("/v1/account/**").hasAnyRole("USER", "SYSTEM_ADMIN", "GROUP_ADMIN")
                 .antMatchers("v1/user/game").hasAnyRole("USER", "SYSTEM_ADMIN");
     }
@@ -72,8 +73,8 @@ public class ScoretrackResourceServerConfig extends ResourceServerConfigurerAdap
 
     @Bean
     protected JwtAccessTokenConverter accessTokenConverter() {
-        String jwtKeyStorePassword = "";
-        String oauth2JwtKeyStoreKeyPairAlias = "";
+        String jwtKeyStorePassword = "I6X7O0H60X";
+        String oauth2JwtKeyStoreKeyPairAlias = "j2-eag-api-jwt-dev";
         String oauth2JwtKeyStoreInternal = "eag-jwt-keystore.jks";
 
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource(oauth2JwtKeyStoreInternal),
