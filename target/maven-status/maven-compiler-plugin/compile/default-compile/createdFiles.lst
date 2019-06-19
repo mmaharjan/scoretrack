@@ -1,0 +1,9 @@
+com\webservices\scoretrack\repo\MatchScoreRepository.class
+com\webservices\scoretrack\ScoretrackApplication.class
+com\webservices\scoretrack\domain\Match.class
+com\webservices\scoretrack\domain\Team.class
+com\webservices\scoretrack\repo\TeamRepository.class
+com\webservices\scoretrack\domain\MatchScore.class
+com\webservices\scoretrack\domain\Group.class
+com\webservices\scoretrack\repo\GroupRepository.class
+com\webservices\scoretrack\repo\MatchRepository.class
