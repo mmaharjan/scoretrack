@@ -31,6 +31,7 @@ public class ScoretrackWebServerConfig extends WebSecurityConfigurerAdapter {
                 .antMatcher("/api/admin/**")
                 .authorizeRequests()
                 //ROLE will automatically be prepended
+                .antMatchers("/v1/game/**").permitAll()
                 .anyRequest().hasAnyRole("USER", "SYSTEM_ADMIN", "GROUP_ADMIN" );
 
         http

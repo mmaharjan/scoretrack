@@ -1,28 +1,24 @@
 package com.webservices.scoretrack.controller;
 
 import com.webservices.scoretrack.domain.Game;
-import com.webservices.scoretrack.repo.GameGroupRepository;
-import com.webservices.scoretrack.repo.GameRepository;
+import com.webservices.scoretrack.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import web.GameDto;
+import web.GameDtoList;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/games")
+@RequestMapping(path = "/v1/games")
 public class GameController {
-    private GameGroupRepository gameGroupRepository;
-    private GameRepository gameRepository;
+    private GameService gameService;
 
     @Autowired
-    public GameController(GameGroupRepository gameGroupRepository, GameRepository gameRepository) {
-        this.gameGroupRepository = gameGroupRepository;
-        this.gameRepository = gameRepository;
+    public GameController(GameService gameService) {
+        this.gameService = gameService;
     }
 
     protected GameController() {
@@ -34,23 +30,23 @@ public class GameController {
      **/
     @RequestMapping(method = RequestMethod.GET)
     public List<Game> getAllGames() {
-        System.out.println("hello brother");
-        List<Game> allGames = gameRepository.findAll();
+        List<Game> allGames = gameService.getAllGames();
         return allGames;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveNewGame(@RequestBody @Validated GameDto gameDto){
-        Game game = new Game();
-        if(gameDto.getTeamOne() != null && gameDto.getTeamOne() != null) {
-            game.setGameId(gameDto.getTeamOne() + "_" + gameDto.getTeamTwo());
-            game.setTeam1(gameDto.getTeamOne());
-            game.setTeam2(gameDto.getTeamTwo());
-            game.setGameDateTime(new Date());
-        }
+    public void createNewGame(@RequestBody @Validated GameDto gameDto){
 
-        gameRepository.save(game);
+        gameService.createNewGame(gameDto);
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createNewGame(@RequestBody @Validated GameDtoList gameDtos){
+
+        gameService.createNewGames(gameDtos.getGameDtoList());
     }
 
 

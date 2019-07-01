@@ -1,45 +1,47 @@
 package web;
 
-import com.webservices.scoretrack.domain.Game;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
 
 public class GameDto {
 
     @NotNull
     @Size(max = 35)
-    private String teamOne;
+    private String team1;
 
     @NotNull
     @Size(max = 35)
-    private String teamTwo;
+    private String team2;
 
     //@NotNull
     private String gameGroup;
 
+    @NotNull
+    private ZonedDateTime gameDateTime;
+
     public GameDto() {}
 
-    public GameDto(String teamOne, String teamTwo, String gameGroup) {
-        this.teamOne = teamOne;
-        this.teamTwo = teamTwo;
+    public GameDto(String teamOne, String team2, String gameGroup) {
+        this.team1 = teamOne;
+        this.team2 = team2;
         this.gameGroup = gameGroup;
     }
 
-    public String getTeamOne() {
-        return teamOne;
+    public String getTeam1() {
+        return team1;
     }
 
-    public void setTeamOne(String teamOne) {
-        this.teamOne = teamOne;
+    public void setTeam1(String team1) {
+        this.team1 = team1;
     }
 
-    public String getTeamTwo() {
-        return teamTwo;
+    public String getTeam2() {
+        return team2;
     }
 
-    public void setTeamTwo(String teamTwo) {
-        this.teamTwo = teamTwo;
+    public void setTeam2(String team2) {
+        this.team2 = team2;
     }
 
     public String getGameGroup() {
@@ -48,5 +50,13 @@ public class GameDto {
 
     public void setGameGroup(String gameGroup) {
         this.gameGroup = gameGroup;
+    }
+
+    public ZonedDateTime getGameDateTime() {
+        return gameDateTime;
+    }
+
+    public void setGameDateTime(ZonedDateTime gameDateTime) {
+        this.gameDateTime = gameDateTime;
     }
 }

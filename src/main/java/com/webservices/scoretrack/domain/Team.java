@@ -1,8 +1,6 @@
 package com.webservices.scoretrack.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,10 +26,10 @@ public class Team {
     //private byte[] teamFlag;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "fk_game_group", nullable = false)
+    @JoinColumn(name = "fk_group_division", nullable = false)
     //@OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private GameGroup gameGroup;
+    private GroupDivision groupDivision;
 
     public Long getId() {
         return id;
@@ -57,11 +55,11 @@ public class Team {
         this.code = code;
     }
 
-    public GameGroup getGameGroup() {
-        return gameGroup;
+    public GroupDivision getGroupDivision() {
+        return groupDivision;
     }
 
-    public void setGameGroup(GameGroup gameGroup) {
-        this.gameGroup = gameGroup;
+    public void setGroupDivision(GroupDivision groupDivision) {
+        this.groupDivision = groupDivision;
     }
 }
